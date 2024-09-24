@@ -1,0 +1,18 @@
+import time, machine, neopixel
+from machine import Pin
+from Tufts_ble import Sniff, Yell
+
+def zombie():
+    neo = neopixel.NeoPixel(Pin(28),1)
+    neo[0] = (255, 0, 0)
+    neo.write()
+    p = Yell()
+    while True:
+        p.advertise(f'!{4}') # advertising our team number
+        print(".")
+        time.sleep(0.1)
+        p.stop_advertising()
+
+
+while True:
+    zombie()
